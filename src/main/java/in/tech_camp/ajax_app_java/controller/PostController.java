@@ -26,12 +26,13 @@ public class PostController {
     return "posts/index";
   }
 
-  @PostMapping("/posts")
+   @PostMapping("/posts")
   public ResponseEntity<PostEntity> savePost(@ModelAttribute("postForm") PostForm form){
     PostEntity post = new PostEntity();
     post.setContent(form.getContent());
     postRepository.insert(post);
     PostEntity resultPost = postRepository.findById(post.getId());
+    System.out.println(resultPost);
     return ResponseEntity.ok(resultPost);
   }
   
